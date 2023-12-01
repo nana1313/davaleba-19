@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>davaleba 17</title>
   </head>
   <body>
@@ -17,8 +17,31 @@
       </tr>
     </table>
     <div id="add"></div>
+    <div id="modal">
+      <form id="popUp">
+        <div class="add-user-title">Add User</div>
+        <div id="popUpForm">
+          
+            <label for="label-txt">ID</label>
+            <input type="number" name="id" id="idNumber" />
+          
+            <label for="label-txt">E-mail</label>
+            <input type="email" name="email" id="emailInput" />
+
+            <label for="firstName">First Name</label>
+            <input type="text" name="first_name" id="name" />
+
+            <label for="lastName">Last Name</label>
+            <input type="text" name="last_name" id="lastName" />
+        </div>
+        <div class="buttons">
+          <button id="save">ADD</button>
+          <button id="close">CLOSE</button>
+        </form>
+      </div>
+    </div>
     <script>
-      const users = [
+      let users = [
         {
           id: 7,
           email: "michael.lawson@reqres.in",
@@ -57,45 +80,131 @@
         },
       ];
 
-        const table = document.getElementById("userTable")
-        users.map(el => {
-            const tr = document.createElement('tr')
-            table.appendChild(tr)
+      const table = document.getElementById("userTable");
+      users.map((el) => {
+        const tr = document.createElement("tr");
+        table.appendChild(tr);
 
-            const tdId = document.createElement('td')
-            tdId.textContent = el.id
-            tr.appendChild(tdId)
+        const tdId = document.createElement("td");
+        tdId.textContent = el.id;
+        tr.appendChild(tdId);
 
-            const tdEmail = document.createElement('td')
-            tdEmail.textContent = el.email
-            tr.appendChild(tdEmail)
+        const tdEmail = document.createElement("td");
+        tdEmail.textContent = el.email;
+        tr.appendChild(tdEmail);
 
-            const tdFirstName = document.createElement('td')
-            tdFirstName.textContent = el.first_name
-            tr.appendChild(tdFirstName)
+        const tdFirstName = document.createElement("td");
+        tdFirstName.textContent = el.first_name;
+        tr.appendChild(tdFirstName);
 
-            const tdLastName = document.createElement('td')
-            tdLastName.textContent = el.last_name
-            tr.appendChild(tdLastName)
+        const tdLastName = document.createElement("td");
+        tdLastName.textContent = el.last_name;
+        tr.appendChild(tdLastName);
 
-            const deleteButton = document.createElement('button')
-            deleteButton.textContent = "DELETE"
-            deleteButton.classList.add("delete-button")
-            tr.appendChild(deleteButton)
-            deleteButton.addEventListener("click", function(){
-                tr.remove()
-            })
-        })
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "DELETE";
+        deleteButton.classList.add("delete-button");
+        tr.appendChild(deleteButton);
+        deleteButton.addEventListener("click", function () {
+          tr.remove();
+        });
+      });
 
-        const add = document.getElementById('add')
-        const addButton = document.createElement('button')
-        addButton.textContent = "ADD"
-        addButton.classList.add("add-button")
-        add.appendChild(addButton)
-        addButton.addEventListener("click", function(){
-            
-        })
+      const add = document.getElementById("add");
+      const addButton = document.createElement("button");
+      addButton.textContent = "ADD";
+      addButton.classList.add("add-button");
+      add.appendChild(addButton);
+      addButton.addEventListener("click", function () {
+        const modal = document.getElementById("modal");
+        modal.style.display = "block";
+      });
+      const close = document.getElementById("close");
+      close.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+      const save = document.getElementById("save");
+      const form = document.getElementById('popUp')
+      save.addEventListener("click", function(e){
+        e.preventDefault()
+        
+        const idNumber = document.getElementById('idNumber').value
+        const emailInput = document.getElementById('emailInput').value
+        const name = document.getElementById('name').value
+        const lastName = document.getElementById('lastName').value
 
+        const newObj = new Object();
+        newObj.id = idNumber
+        newObj.email = emailInput
+        newObj.first_name = name
+        newObj.lastName = lastName
+        
+        users.push(newObj)
+
+        const tr = document.createElement("tr");
+        table.appendChild(tr);
+
+        const tdId = document.createElement("td");
+        tdId.textContent = idNumber;
+        tr.appendChild(tdId);
+
+        const tdEmail = document.createElement("td");
+        tdEmail.textContent = emailInput;
+        tr.appendChild(tdEmail);
+
+        const tdFirstName = document.createElement("td");
+        tdFirstName.textContent = name;
+        tr.appendChild(tdFirstName);
+
+        const tdLastName = document.createElement("td");
+        tdLastName.textContent = lastName;
+        tr.appendChild(tdLastName);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "DELETE";
+        deleteButton.classList.add("delete-button");
+        tr.appendChild(deleteButton);
+        deleteButton.addEventListener("click", function () {
+          tr.remove();
+        });
+       
+        const form = document.getElementById('popUp').reset()
+        modal.style.display = "none";
+      });
+
+
+
+      //davaleba 2
+      async function setString(stringExmpl) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (stringExmpl.length > 10) {
+              resolve(stringExmpl);
+            } else {
+              reject("This is async function");
+            }
+          }, 5000);
+        });
+      }
+
+      const string = "My name is nana!";
+      const string1 = "nana";
+
+      setString(string)
+        .then((result) => {
+        console.log("Resolved:", result);
+      })
+      .catch((error) => {
+        console.error("Rejected:", error);
+      });
+
+      setString(string1)
+        .then((result) => {
+        console.log("Resolved:", result);
+      })
+        .catch((error) => {
+        console.error("Rejected:", error);
+      });
     </script>
   </body>
 </html>
