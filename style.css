@@ -1,0 +1,47 @@
+@font-face {
+    font-family: roboto-bold;
+    src: url("font/RobotoMono-Bold.ttf");
+}
+@font-face {
+    font-family: roboto-regular;
+    src: url("font/RobotoMono-Regular.ttf");
+}
+#userTable, td, th {
+    border: 1px solid black;
+}
+td,th{
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+th {
+    font-family: "roboto-bold";
+    background-color: #0E72F4;
+    color: white;
+    font-size: 20px;
+}
+td{
+    font-family: "roboto-regular";
+    font-size: 18px;
+}
+.delete-button{
+    font-family: roboto-regular;
+    width: 100px;
+    height: 50px;
+    font-size: 18px;
+    background-color: red;
+    color: white;
+    border: none;
+    letter-spacing: 1px;
+}
+.add-button{
+    font-family: roboto-regular;
+    font-size: 18px;
+    background-color: #0C8CF4;
+    color: white;
+    width: 100px;
+    height: 50px;
+    border: none;
+    margin-top: 30px;
+    letter-spacing: 3px;
+}
